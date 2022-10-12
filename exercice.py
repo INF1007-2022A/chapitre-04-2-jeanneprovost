@@ -17,11 +17,22 @@ def get_random_sentence(animals, adjectives, fruits):
 
 
 def encrypt(text, shift):
-    return ""
+    encrypted_text = ""
+    for letter in text:
+        if letter.isalpha():
+            if ord(letter) <= 90-shift or 97 <= ord(letter) <= 122-shift:
+                encrypted_text += chr(ord(letter)+shift)
+            elif ord(letter) <= 90:
+                encrypted_text += chr(90-ord(letter)+65+shift)
+            else:
+                encrypted_text += chr(122 - ord(letter) + 97 + shift)
+        else:
+            encrypted_text += letter
+    return encrypted_text
 
 
 def decrypt(encrypted_text, shift):
-    return ""
+    return encrypt(encrypted_text, -shift)
 
 
 if __name__ == "__main__":
